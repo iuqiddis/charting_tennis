@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title> Actionable Tennis Insights
+</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="styles_home.css" />
+-->
+<link rel=stylesheet type=text/css href='{{ url_for('static',filename='styles_home.css')}}'>
+<link rel="shortcut icon" href="{{ url_for('static', filename='tennis.ico') }}">
+</head>
+
+<body>
+<div id="all-content">
+
+<div id="header">
+<h1><h1>Actionable Tennis Insights <img src="static/tennis.jpg" alt="Tennis" width="80" />
+</h1>
+Shot-by-shot match analysis for actionable insights to implement <span class="atitle">during </span> gameplay to improve your chances of winning.
+<hr class="imp"/>
+
+</div>
+
+<div id="content">
+<br>
+<!--<form id='playername' method='post' action='/' > -->
+<form id='playername' method='post' action="/" >
+
+<label for = 'player_name'> Select a player: </label>
+
+<select id = 'player_name' name='player_name'>
+    <option value="Aaron Krickstein">Aaron Krickstein</option>
+    <option value="Adrian Mannarino">Adrian Mannarino</option>
+    <option value="Adrien Bossel">Adrien Bossel</option>
+    <option value="Akira Santillan">Akira Santillan</option>
+    <option value="Albano Olivetti">Albano Olivetti</option>
+    <option value="Albert Costa">Albert Costa</option>
+    <option value="Albert Montanes">Albert Montanes</option>
+    <option value="Albert Ramos">Albert Ramos</option>
+    <option value="Alejandro Gonzalez">Alejandro Gonzalez</option>
+    <option value="Aleksandr Nedovyesov">Aleksandr Nedovyesov</option>
+    <option value="Alex Bolt">Alex Bolt</option>
+    <option value="Alex Corretja">Alex Corretja</option>
+    <option value="Alex De Minaur">Alex De Minaur</option>
+    <option value="Alexander Zverev">Alexander Zverev</option>
+    <option value="Alexandr Dolgopolov">Alexandr Dolgopolov</option>
+    <option value="Alexei Popyrin">Alexei Popyrin</option>
+    <option value="Alexey Vatutin">Alexey Vatutin</option>
+    <option value="Aljaz Bedene">Aljaz Bedene</option>
+    <option value="Altug Celikbilek">Altug Celikbilek</option>
+    <option value="Amir Weintraub">Amir Weintraub</option>
+    <option value="Andre Agassi">Andre Agassi</option>
+    <option value="Andrea Gaudenzi">Andrea Gaudenzi</option>
+    <option value="Andreas Haider Maurer">Andreas Haider Maurer</option>
+    <option value="Andreas Seppi">Andreas Seppi</option>
+    <option value="Andrei Chesnokov">Andrei Chesnokov</option>
+    <option value="Andrei Medvedev">Andrei Medvedev</option>
+    <option value="Andres Artunedo">Andres Artunedo</option>
+    <option value="Andres Gomez">Andres Gomez</option>
+    <option value="Andrew Harris">Andrew Harris</option>
+    <option value="Andrey Kuznetsov">Andrey Kuznetsov</option>
+    <option value="Andrey Rublev">Andrey Rublev</option>
+    <option value="Andy Murray">Andy Murray</option>
+    <option value="Andy Roddick">Andy Roddick</option>
+    <option value="Ante Pavic">Ante Pavic</option>
+    <option value="Antonie Hoang">Antonie Hoang</option>
+    <option value="Antonio Veic">Antonio Veic</option>
+    <option value="Arnaud Clement">Arnaud Clement</option>
+    <option value="Axel Michon">Axel Michon</option>
+    <option value="Benoit Paire">Benoit Paire</option>
+    <option value="Bernard Tomic">Bernard Tomic</option>
+    <option value="Bjorn Borg">Bjorn Borg</option>
+    <option value="Bob Bryan">Bob Bryan</option>
+    <option value="Boris Becker">Boris Becker</option>
+    <option value="Borna Coric">Borna Coric</option>
+    <option value="Brad Gilbert">Brad Gilbert</option>
+    <option value="Bradley Klahn">Bradley Klahn</option>
+    <option value="Brian Gottfried">Brian Gottfried</option>
+    <option value="Cameron Norrie">Cameron Norrie</option>
+    <option value="Carlos Berlocq">Carlos Berlocq</option>
+    <option value="Carlos Moya">Carlos Moya</option>
+    <option value="Casper Ruud">Casper Ruud</option>
+    <option value="Cedric Pioline">Cedric Pioline</option>
+    <option value="Chieh Fu Wang">Chieh Fu Wang</option>
+    <option value="Chris Guccione">Chris Guccione</option>
+    <option value="Chris Lewis">Chris Lewis</option>
+    <option value="Chris Woodruff">Chris Woodruff</option>
+    <option value="Christopher Heyman">Christopher Heyman</option>
+    <option value="Chun Hsin Tseng">Chun Hsin Tseng</option>
+    <option value="Constant Lestienne">Constant Lestienne</option>
+    <option value="Damir Dzumhur">Damir Dzumhur</option>
+    <option value="Daniel Evans">Daniel Evans</option>
+    <option value="Daniel Gimeno Traver">Daniel Gimeno Traver</option>
+    <option value="Daniil Medvedev">Daniil Medvedev</option>
+    <option value="Dario Acosta">Dario Acosta</option>
+    <option value="David Ferrer">David Ferrer</option>
+    <option value="David Goffin">David Goffin</option>
+    <option value="David Guez">David Guez</option>
+    <option value="David Nalbandian">David Nalbandian</option>
+    <option value="David Perez Sanz">David Perez Sanz</option>
+    <option value="David Wheaton">David Wheaton</option>
+    <option value="Denis Istomin">Denis Istomin</option>
+    <option value="Denis Kudla">Denis Kudla</option>
+    <option value="Denis Shapovalov">Denis Shapovalov</option>
+    <option value="Dennis Novak">Dennis Novak</option>
+    <option value="Dennis Novikov">Dennis Novikov</option>
+    <option value="Diego Sebastian Schwartzman">Diego Sebastian Schwartzman</option>
+    <option value="Dominic Thiem">Dominic Thiem</option>
+    <option value="Dominik Hrbaty">Dominik Hrbaty</option>
+    <option value="Donald Young">Donald Young</option>
+    <option value="Dudi Sela">Dudi Sela</option>
+    <option value="Dusan Lajovic">Dusan Lajovic</option>
+    <option value="Dustin Brown">Dustin Brown</option>
+    <option value="Dzmitry Zhyrmont">Dzmitry Zhyrmont</option>
+    <option value="Edouard Roger Vasselin">Edouard Roger Vasselin</option>
+    <option value="Egor Gerasimov">Egor Gerasimov</option>
+    <option value="Elliot Benchetrit">Elliot Benchetrit</option>
+    <option value="Ernests Gulbis">Ernests Gulbis</option>
+    <option value="Evgeny Donskoy">Evgeny Donskoy</option>
+    <option value="Fabio Fognini">Fabio Fognini</option>
+    <option value="Farrukh Dustov">Farrukh Dustov</option>
+    <option value="Federico Delbonis">Federico Delbonis</option>
+    <option value="Feliciano Lopez">Feliciano Lopez</option>
+    <option value="Felix Auger Aliassime">Felix Auger Aliassime</option>
+    <option value="Felix Mantilla">Felix Mantilla</option>
+    <option value="Fernando Gonzalez">Fernando Gonzalez</option>
+    <option value="Fernando Romboli">Fernando Romboli</option>
+    <option value="Fernando Verdasco">Fernando Verdasco</option>
+    <option value="Filip Krajinovic">Filip Krajinovic</option>
+    <option value="Florian Mayer">Florian Mayer</option>
+    <option value="Francis Tiafoe">Francis Tiafoe</option>
+    <option value="Frank Dancevic">Frank Dancevic</option>
+    <option value="Gael Monfils">Gael Monfils</option>
+    <option value="Gastao Elias">Gastao Elias</option>
+    <option value="Gaston Gaudio">Gaston Gaudio</option>
+    <option value="George Bastl">George Bastl</option>
+    <option value="Gianluigi Quinzi">Gianluigi Quinzi</option>
+    <option value="Gijs Brouwer">Gijs Brouwer</option>
+    <option value="Gilles Muller">Gilles Muller</option>
+    <option value="Gilles Simon">Gilles Simon</option>
+    <option value="Giovanni Lapentti">Giovanni Lapentti</option>
+    <option value="Goran Ivanisevic">Goran Ivanisevic</option>
+    <option value="Grega Zemlja">Grega Zemlja</option>
+    <option value="Gregoire Barrere">Gregoire Barrere</option>
+    <option value="Grigor Dimitrov">Grigor Dimitrov</option>
+    <option value="Guido Pella">Guido Pella</option>
+    <option value="Guillermo Coria">Guillermo Coria</option>
+    <option value="Guillermo Garcia Lopez">Guillermo Garcia Lopez</option>
+    <option value="Guillermo Vilas">Guillermo Vilas</option>
+    <option value="Gustavo Kuerten">Gustavo Kuerten</option>
+    <option value="Guy Forget">Guy Forget</option>
+    <option value="Henri Leconte">Henri Leconte</option>
+    <option value="Hiroki Moriya">Hiroki Moriya</option>
+    <option value="Ho Gi Kang">Ho Gi Kang</option>
+    <option value="Horacio Zeballos">Horacio Zeballos</option>
+    <option value="Hubert Hurkacz">Hubert Hurkacz</option>
+    <option value="Hyeon Chung">Hyeon Chung</option>
+    <option value="Igor Andreev">Igor Andreev</option>
+    <option value="Igor Sijsling">Igor Sijsling</option>
+    <option value="Ilya Ivashka">Ilya Ivashka</option>
+    <option value="Inigo Cervantes Huegun">Inigo Cervantes Huegun</option>
+    <option value="Ivan Dodig">Ivan Dodig</option>
+    <option value="Ivan Lendl">Ivan Lendl</option>
+    <option value="Ivan Ljubicic">Ivan Ljubicic</option>
+    <option value="Ivo Karlovic">Ivo Karlovic</option>
+    <option value="Izak Van Der Merwe">Izak Van Der Merwe</option>
+    <option value="Jack Sock">Jack Sock</option>
+    <option value="James Blake">James Blake</option>
+    <option value="James Duckworth">James Duckworth</option>
+    <option value="James Ward">James Ward</option>
+    <option value="Jan Kroslak">Jan Kroslak</option>
+    <option value="Jan Lennard Struff">Jan Lennard Struff</option>
+    <option value="Jan Michael Gambill">Jan Michael Gambill</option>
+    <option value="Jannik Sinner">Jannik Sinner</option>
+    <option value="Jared Donaldson">Jared Donaldson</option>
+    <option value="Jarkko Nieminen">Jarkko Nieminen</option>
+    <option value="Jason Jung">Jason Jung</option>
+    <option value="Jason Kubler">Jason Kubler</option>
+    <option value="Jason Stoltenberg">Jason Stoltenberg</option>
+    <option value="Jaume Munar">Jaume Munar</option>
+    <option value="Jean Yves Aubone">Jean Yves Aubone</option>
+    <option value="Jeremy Chardy">Jeremy Chardy</option>
+    <option value="Jeremy Jahn">Jeremy Jahn</option>
+    <option value="Jim Courier">Jim Courier</option>
+    <option value="Jimmy Connors">Jimmy Connors</option>
+    <option value="Jimmy Wang">Jimmy Wang</option>
+    <option value="Jiri Lehecka">Jiri Lehecka</option>
+    <option value="Jiri Vesely">Jiri Vesely</option>
+    <option value="Jo Wilfried Tsonga">Jo Wilfried Tsonga</option>
+    <option value="Joao Sousa">Joao Sousa</option>
+    <option value="John Isner">John Isner</option>
+    <option value="John Mcenroe">John Mcenroe</option>
+    <option value="John Millman">John Millman</option>
+    <option value="Jonas Bjorkman">Jonas Bjorkman</option>
+    <option value="Jonas Svensson">Jonas Svensson</option>
+    <option value="Jordan Thompson">Jordan Thompson</option>
+    <option value="Jose Hernandez">Jose Hernandez</option>
+    <option value="Jose Rubin Statham">Jose Rubin Statham</option>
+    <option value="Jozef Kovalik">Jozef Kovalik</option>
+    <option value="Juan Aguilera">Juan Aguilera</option>
+    <option value="Juan Carlos Ferrero">Juan Carlos Ferrero</option>
+    <option value="Juan Ignacio Londero">Juan Ignacio Londero</option>
+    <option value="Juan Martin Del Potro">Juan Martin Del Potro</option>
+    <option value="Julien Benneteau">Julien Benneteau</option>
+    <option value="Julien Boutter">Julien Boutter</option>
+    <option value="Jurgen Melzer">Jurgen Melzer</option>
+    <option value="Jurgen Zopp">Jurgen Zopp</option>
+    <option value="Karel Novacek">Karel Novacek</option>
+    <option value="Karen Khachanov">Karen Khachanov</option>
+    <option value="Karim Mohamed Maamoun">Karim Mohamed Maamoun</option>
+    <option value="Karol Beck">Karol Beck</option>
+    <option value="Kei Nishikori">Kei Nishikori</option>
+    <option value="Kevin Anderson">Kevin Anderson</option>
+    <option value="Kim Warwick">Kim Warwick</option>
+    <option value="Kyle Edmund">Kyle Edmund</option>
+    <option value="Laslo Djere">Laslo Djere</option>
+    <option value="Leonardo Mayer">Leonardo Mayer</option>
+    <option value="Lleyton Hewitt">Lleyton Hewitt</option>
+    <option value="Lorenzo Giustino">Lorenzo Giustino</option>
+    <option value="Lucas Pouille">Lucas Pouille</option>
+    <option value="Lukas Lacko">Lukas Lacko</option>
+    <option value="Lukas Rosol">Lukas Rosol</option>
+    <option value="Mackenzie Mcdonald">Mackenzie Mcdonald</option>
+    <option value="Magnus Norman">Magnus Norman</option>
+    <option value="Makoto Ochi">Makoto Ochi</option>
+    <option value="Malek Jaziri">Malek Jaziri</option>
+    <option value="Marat Safin">Marat Safin</option>
+    <option value="Marc Rosset">Marc Rosset</option>
+    <option value="Marc Sieber">Marc Sieber</option>
+    <option value="Marcel Granollers">Marcel Granollers</option>
+    <option value="Marcelo Arevalo">Marcelo Arevalo</option>
+    <option value="Marcelo Rios">Marcelo Rios</option>
+    <option value="Marco Cecchinato">Marco Cecchinato</option>
+    <option value="Marcos Baghdatis">Marcos Baghdatis</option>
+    <option value="Marcos Giron">Marcos Giron</option>
+    <option value="Mardy Fish">Mardy Fish</option>
+    <option value="Marin Cilic">Marin Cilic</option>
+    <option value="Marinko Matosevic">Marinko Matosevic</option>
+    <option value="Mario Ancic">Mario Ancic</option>
+    <option value="Marius Copil">Marius Copil</option>
+    <option value="Mark Philippoussis">Mark Philippoussis</option>
+    <option value="Mark Woodforde">Mark Woodforde</option>
+    <option value="Markus Eriksson">Markus Eriksson</option>
+    <option value="Martin Klizan">Martin Klizan</option>
+    <option value="Martin Verkerk">Martin Verkerk</option>
+    <option value="Marton Fucsovics">Marton Fucsovics</option>
+    <option value="Mate Delic">Mate Delic</option>
+    <option value="Mathias Bourgue">Mathias Bourgue</option>
+    <option value="Mats Wilander">Mats Wilander</option>
+    <option value="Matteo Berrettini">Matteo Berrettini</option>
+    <option value="Matthew Ebden">Matthew Ebden</option>
+    <option value="Matthias Bachinger">Matthias Bachinger</option>
+    <option value="Maximilian Marterer">Maximilian Marterer</option>
+    <option value="Michael Berrer">Michael Berrer</option>
+    <option value="Michael Chang">Michael Chang</option>
+    <option value="Michael Llodra">Michael Llodra</option>
+    <option value="Michael Mmoh">Michael Mmoh</option>
+    <option value="Michael Redlicki">Michael Redlicki</option>
+    <option value="Michael Stich">Michael Stich</option>
+    <option value="Michal Przysiezny">Michal Przysiezny</option>
+    <option value="Mikael Pernfors">Mikael Pernfors</option>
+    <option value="Mike Bryan">Mike Bryan</option>
+    <option value="Mikhail Kukushkin">Mikhail Kukushkin</option>
+    <option value="Mikhail Youzhny">Mikhail Youzhny</option>
+    <option value="Milos Raonic">Milos Raonic</option>
+    <option value="Milos Sekulic">Milos Sekulic</option>
+    <option value="Miomir Kecmanovic">Miomir Kecmanovic</option>
+    <option value="Miroslav Mecir">Miroslav Mecir</option>
+    <option value="Mirza Basic">Mirza Basic</option>
+    <option value="Mischa Zverev">Mischa Zverev</option>
+    <option value="Mohamed Safwat">Mohamed Safwat</option>
+    <option value="N Sriram Balaji">N Sriram Balaji</option>
+    <option value="Nattan Benjasupawan">Nattan Benjasupawan</option>
+    <option value="Nick Kyrgios">Nick Kyrgios</option>
+    <option value="Nicolas Almagro">Nicolas Almagro</option>
+    <option value="Nicolas Jarry">Nicolas Jarry</option>
+    <option value="Nicolas Kiefer">Nicolas Kiefer</option>
+    <option value="Nicolas Lapentti">Nicolas Lapentti</option>
+    <option value="Nicolas Mahut">Nicolas Mahut</option>
+    <option value="Nikola Cacic">Nikola Cacic</option>
+    <option value="Nikolay Davydenko">Nikolay Davydenko</option>
+    <option value="Nikoloz Basilashvili">Nikoloz Basilashvili</option>
+    <option value="Novak Djokovic">Novak Djokovic</option>
+    <option value="Pablo Carreno Busta">Pablo Carreno Busta</option>
+    <option value="Pablo Cuevas">Pablo Cuevas</option>
+    <option value="Paolo Lorenzi">Paolo Lorenzi</option>
+    <option value="Pat Cash">Pat Cash</option>
+    <option value="Patrick Rafter">Patrick Rafter</option>
+    <option value="Paul Henri Mathieu">Paul Henri Mathieu</option>
+    <option value="Pavel Tsoy">Pavel Tsoy</option>
+    <option value="Pedro Cachin">Pedro Cachin</option>
+    <option value="Pete Sampras">Pete Sampras</option>
+    <option value="Peter Gojowczyk">Peter Gojowczyk</option>
+    <option value="Peter Polansky">Peter Polansky</option>
+    <option value="Petr Korda">Petr Korda</option>
+    <option value="Philipp Kohlschreiber">Philipp Kohlschreiber</option>
+    <option value="Pierre Hugues Herbert">Pierre Hugues Herbert</option>
+    <option value="Prajnesh Gunneswaran">Prajnesh Gunneswaran</option>
+    <option value="Radek Stepanek">Radek Stepanek</option>
+    <option value="Radu Albot">Radu Albot</option>
+    <option value="Rafael Nadal">Rafael Nadal</option>
+    <option value="Rainer Schuettler">Rainer Schuettler</option>
+    <option value="Ramkumar Ramanathan">Ramkumar Ramanathan</option>
+    <option value="Reilly Opelka">Reilly Opelka</option>
+    <option value="Ricardas Berankis">Ricardas Berankis</option>
+    <option value="Richard Gasquet">Richard Gasquet</option>
+    <option value="Richard Kraijcek">Richard Kraijcek</option>
+    <option value="Richard Krajicek">Richard Krajicek</option>
+    <option value="Robby Ginepri">Robby Ginepri</option>
+    <option value="Roberto Bautista Agut">Roberto Bautista Agut</option>
+    <option value="Roberto Carballes Baena">Roberto Carballes Baena</option>
+    <option value="Robin Haase">Robin Haase</option>
+    <option value="Robin Soderling">Robin Soderling</option>
+    <option value="Roger Federer" selected>Roger Federer</option>
+    <option value="Rogerio Dutra Silva">Rogerio Dutra Silva</option>
+    <option value="Ruben Gonzales">Ruben Gonzales</option>
+    <option value="Rudy Coco">Rudy Coco</option>
+    <option value="Ryan Harrison">Ryan Harrison</option>
+    <option value="Sam Querrey">Sam Querrey</option>
+    <option value="Samuel Groth">Samuel Groth</option>
+    <option value="Sanjar Fayziev">Sanjar Fayziev</option>
+    <option value="Santiago Giraldo">Santiago Giraldo</option>
+    <option value="Sargis Sargsian">Sargis Sargsian</option>
+    <option value="Sebastian Fanselow">Sebastian Fanselow</option>
+    <option value="Sebastien Grosjean">Sebastien Grosjean</option>
+    <option value="Sergi Bruguera">Sergi Bruguera</option>
+    <option value="Sergiy Stakhovsky">Sergiy Stakhovsky</option>
+    <option value="Sho Katayama">Sho Katayama</option>
+    <option value="Somdev Devvarman">Somdev Devvarman</option>
+    <option value="Stanislas Wawrinka">Stanislas Wawrinka</option>
+    <option value="Stefan Edberg">Stefan Edberg</option>
+    <option value="Stefanos Tsitsipas">Stefanos Tsitsipas</option>
+    <option value="Steve Darcis">Steve Darcis</option>
+    <option value="Steve Denton">Steve Denton</option>
+    <option value="Steve Johnson">Steve Johnson</option>
+    <option value="Steven Diez">Steven Diez</option>
+    <option value="Taro Daniel">Taro Daniel</option>
+    <option value="Taylor Harry Fritz">Taylor Harry Fritz</option>
+    <option value="Tennys Sandgren">Tennys Sandgren</option>
+    <option value="Teymuraz Gabashvili">Teymuraz Gabashvili</option>
+    <option value="Thanasi Kokkinakis">Thanasi Kokkinakis</option>
+    <option value="Thiago Monteiro">Thiago Monteiro</option>
+    <option value="Thiago Seyboth Wild">Thiago Seyboth Wild</option>
+    <option value="Thiemo De Bakker">Thiemo De Bakker</option>
+    <option value="Thomas Enqvist">Thomas Enqvist</option>
+    <option value="Thomas Fabbiano">Thomas Fabbiano</option>
+    <option value="Thomas Johansson">Thomas Johansson</option>
+    <option value="Thomaz Bellucci">Thomaz Bellucci</option>
+    <option value="Ti Chen">Ti Chen</option>
+    <option value="Tim Henman">Tim Henman</option>
+    <option value="Tim Smyczek">Tim Smyczek</option>
+    <option value="Todd Martin">Todd Martin</option>
+    <option value="Todd Woodbridge">Todd Woodbridge</option>
+    <option value="Tomas Berdych">Tomas Berdych</option>
+    <option value="Tommy Haas">Tommy Haas</option>
+    <option value="Tommy Robredo">Tommy Robredo</option>
+    <option value="Ugo Humbert">Ugo Humbert</option>
+    <option value="Vasek Pospisil">Vasek Pospisil</option>
+    <option value="Viktor Troicki">Viktor Troicki</option>
+    <option value="Vitas Gerulaitis">Vitas Gerulaitis</option>
+    <option value="Vladimir Ivanov">Vladimir Ivanov</option>
+    <option value="Wayne Arthurs">Wayne Arthurs</option>
+    <option value="Wayne Ferreira">Wayne Ferreira</option>
+    <option value="Yannick Maden">Yannick Maden</option>
+    <option value="Yannick Mertens">Yannick Mertens</option>
+    <option value="Yevgeny Kafelnikov">Yevgeny Kafelnikov</option>
+    <option value="Yoshihito Nishioka">Yoshihito Nishioka</option>
+    <option value="Yuki Bhambri">Yuki Bhambri</option>
+</select>
+
+<!--	<p>
+    	Player Name: <input type='text' name='player_name' />
+      	</p>
+-->
+<!--
+	<p>
+    	<strong>Surface:</strong>
+	<br>
+		<input type="checkbox" name="all_surf" value="all_surf" checked>
+		<label for="all_surf">All Surfaces</label>
+
+		<input type="checkbox" name="hardcourt" value="hardcourt">
+		<label for="harcourt">Hardcourt</label>
+	
+		<input type="checkbox" name="clay" value="clay">
+		<label for="clay">Clay</label>
+	
+  		<input type="checkbox" name="grass" value="grass">
+		<label for="grass">Grass</label>	
+      	</p>
+	<p>
+	<strong>Number of Sets:</strong>
+	<br>
+		<input type="radio" name="sets" value="5and3" checked>
+		<label for="sets">Both 3 and 5 sets</label>
+  		<input type="radio" name="sets" value="5">
+		<label for="sets">3 Sets</label>
+  		<input type="radio" name="sets" value="3">
+		<label for="sets">5 Sets</label>
+	</p>
+	<p>
+    	<strong>Tournaments:</strong>
+	<br>
+		<input type="checkbox" name="all_tour" value="all_tour" checked>
+		<label for="all_tour">All Tours Matches</label>
+		
+		<input type="checkbox" name="w_tour" value="w_tour">
+		<label for="w_tour">All Women's Matches</label>
+
+		<input type="checkbox" name="m_tour" value="m_tour">
+		<label for="m_tour">All Men's Matches</label>
+		<br>
+		<input type="checkbox" name="slams" value="slams">
+		<label for="slams">Slams</label>
+	
+		<input type="checkbox" name="1000s" value="1000">
+		<label for="1000s">ATP 1000/ WTA Premier Mandatory+5</label>
+		<br>
+  		<input type="checkbox" name="500s" value="500">
+		<label for="500s">ATP 500/ WTA Premier</label>
+
+		<input type="checkbox" name="250s" value="250">
+		<label for="250s">ATP 250/ WTA International</label>
+	</p>
+	<p>
+	<strong>Serve Direction Patterns:</strong>
+	<br>
+		<input type="checkbox" name="all_serv" value="all_serv" checked>
+		<label for="all_serv">All Serves</label>
+		
+		<input type="checkbox" name="all_bp" value="all_bp" checked>
+		<label for="all_bp">All Break Points</label>
+
+		<input type="checkbox" name="1bp" value="1bp">
+		<label for="1bp">Single Break Point</label>
+
+		<input type="checkbox" name="2bp" value="2bp">
+		<label for="2bp">Double Break Point</label>
+	</p>
+	<strong>Return Direction Patterns:</strong>
+	<br>
+		<input type="checkbox" name="all_ret" value="all_ret" checked>
+		<label for="all_ret">All Returns</label>
+		
+		<input type="checkbox" name="all_bpr" value="all_bpr" checked>
+		<label for="all_bpr">All Break Points</label>
+
+		<input type="checkbox" name="1bpr" value="1bpr">
+		<label for="1bpr">Single Break Point</label>
+
+		<input type="checkbox" name="2bpr" value="2bpr">
+		<label for="2bpr">Double Break Point</label>
+	</p>
+	<p style='color:gray'>
+	<strong>Assorted Analyses:</strong>
+	<br>
+		<input type="checkbox" name="neut" value="neut">
+		<label for="neut">Rally length to serve neutralization</label>
+		
+		<input type="checkbox" name="sh_clust" value="sh_clust">
+		<label for="sh_clust">Shot clusters based on rally length</label>
+
+	</p>
+-->
+
+    <input type='submit' value='Submit' />
+      </p>
+</form>
+
+<p>
+<ul>
+	<li> Select a player from the drop-down menu to see their serve direction during different points of a match. </li>
+	<li> Popular players you may be interested include Roger Federer, Rafael Nadal, Novak Djokovic, Andy Murray.</li>
+	<li> Looking for women players? I'll be adding them very soon.</li>
+    <li> The next analysis will be focus on a player's return direction. </li>
+</ul>
+</p>
+
+<br>
+<hr/>
+
+<!--<h2> <a href='about.html'>About</a> </h2>-->
+<h2><a href='{{ url_for('static',filename='about.html')}}'>About</a></h2>
+
+
+
+</div>
+
+<hr/>
+
+
+</div>
+
+<br/>
+
+</div>
+
+<div id="footer">
+<p> Updated February 19th, 2020. </p>
+</div>
+
+</div>
+
+
+
+</body>
+</html>

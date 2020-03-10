@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title> {{pname}}'s Serve Distribution
+</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="../static/d3.min.js"></script>
+<script type="text/javascript" src="../static/d3-scale.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/chart.css" />
+<!--<link rel=stylesheet type=text/css href='{{ url_for('static',filename='chart.css')}}'> -->
+<link rel="stylesheet" type="text/css" href="../static/styles.css" />
+<!--<link rel=stylesheet type=text/css href='{{ url_for('static',filename='styles.css')}}'> -->
+
+</head>
+
+<body>
+
+<div id="all-content">
+
+<div id="header">
+<h1><a href="../">{{pname}} Break Point (BP) Analysis</a></h1>
+</div>
+
+<div id="allDiv">
+
+<div id="subDiv1">
+<div class="widget">
+    <div class="header">No BP, 1st Serve</div>
+    <div id="chart01" class="chart-container">
+
+<script type="text/javascript">
+
+var dataset = [
+        { "name": 'Wide', "percent": {{a1w}} },
+	{ "name": 'Body', "percent": {{a1b}} },        
+	{ "name": 'Down T', "percent": {{a1t}} },
+    ];
+
+    var pie=d3.pie()
+            .value(function(d){return d.percent})
+            .sort(null)
+            .padAngle(.04);
+
+    var w=200,h=200;
+
+    var outerRadius=w/2;
+    var innerRadius=w/3.5;
+
+    var color = d3.scaleOrdinal()
+    .range(["#35c943", "#354ac9", "#e82424", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc=d3.arc()
+            .outerRadius(outerRadius)
+            .innerRadius(innerRadius);
+
+    var svg=d3.select("#chart01")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h)
+            .attr("class","shadow")
+	    .append("g")
+            .attr("transform", "translate("+ w/2 +","+ h/2 +")");
+
+    var path=svg.selectAll('path')
+            .data(pie(dataset))
+            .enter()
+            .append('path')
+            .attr("d", arc)
+            .style("fill", function(d,i){return color(d.data.name);});
+
+
+path.transition()
+    .duration(1000)
+    .attrTween('d', function(d) {
+        var interpolate = d3.interpolate({startAngle: 0, endAngle: 0}, d);
+        return function(t) {
+            return arc(interpolate(t));
+        };
+    });
+
+
+var text=svg.selectAll('text')
+  .data(pie(dataset))
+  .enter()
+  .append("text")
+  .transition()
+  .duration(200)
+  .attr("transform", function (d) {
+      return "translate(" + arc.centroid(d) + ")";
+  })
+  .attr("dy", ".4em")
+  .attr("text-anchor", "middle")
+  .text(function(d){
+      return d.data.percent+"%";
+  })
+  .style("fill", '#000000')
+  .style("font-size", '10px');
+
+var legendRectSize=16;
+var legendSpacing=7;
+var legendHeight=legendRectSize+legendSpacing;
+ 
+var legend=svg.selectAll('.legend')
+  .data(color.domain())
+  .enter()
+  .append('g')
+  .attr("class", 'legend')
+  .attr("transform", function(d,i){
+          //Just a calculation for x and y position
+          return 'translate(-35,' + ((i*legendHeight)-35) + ')';});
+
+legend.append('rect')
+  .attr("width", legendRectSize)
+  .attr("height", legendRectSize)
+  .attr("rx", 20)
+  .attr("ry", 20)
+  .style("fill",color)
+  .style("stroke", color);
+ 
+legend.append('text')
+  .attr("x",30)
+  .attr("y",15)
+  .text(function(d){return d;})
+  .style("fill", "#000000")
+  .style("font-size","12px");
+
+</script>
+</div>
+</div>
+</div>
+
+<div id="subDiv2">
+<div class="widget">
+    <div class="header">1 BP, 1st Serve</div>
+    <div id="chart11" class="chart-container">
+<script type="text/javascript">
+var dataset = [
+        { "name": 'Wide', "percent": {{s1w}} },
+	{ "name": 'Body', "percent": {{s1b}} },        
+	{ "name": 'Down T', "percent": {{s1t}} },
+    ];
+
+    var pie=d3.pie()
+            .value(function(d){return d.percent})
+            .sort(null)
+            .padAngle(.03);
+
+    var w=200,h=200;
+
+    var outerRadius=w/2;
+    var innerRadius=w/3.5;
+
+    var color = d3.scaleOrdinal()
+    .range(["#35c943", "#354ac9", "#e82424", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc=d3.arc()
+            .outerRadius(outerRadius)
+            .innerRadius(innerRadius);
+
+    var svg=d3.select("#chart11")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h)
+            .attr("class","shadow")
+	    .append("g")
+            .attr("transform", "translate("+ w/2 +","+ h/2 +")");
+
+    var path=svg.selectAll('path')
+            .data(pie(dataset))
+            .enter()
+            .append('path')
+            .attr("d", arc)
+            .style("fill", function(d,i){return color(d.data.name);});
+
+
+path.transition()
+    .duration(1000)
+    .attrTween('d', function(d) {
+        var interpolate = d3.interpolate({startAngle: 0, endAngle: 0}, d);
+        return function(t) {
+            return arc(interpolate(t));
+        };
+    });
+
+
+
+var text=svg.selectAll('text')
+  .data(pie(dataset))
+  .enter()
+  .append("text")
+  .transition()
+  .duration(200)
+  .attr("transform", function (d) {
+      return "translate(" + arc.centroid(d) + ")";
+  })
+  .attr("dy", ".4em")
+  .attr("text-anchor", "middle")
+  .text(function(d){
+      return d.data.percent+"%";
+  })
+  .style("fill", '#000000')
+  .style("font-size", '10px');
+
+var legendRectSize=16;
+var legendSpacing=7;
+var legendHeight=legendRectSize+legendSpacing;
+ 
+var legend=svg.selectAll('.legend')
+  .data(color.domain())
+  .enter()
+  .append('g')
+  .attr("class", 'legend')
+  .attr("transform", function(d,i){
+          //Just a calculation for x and y position
+          return 'translate(-35,' + ((i*legendHeight)-35) + ')';});
+
+legend.append('rect')
+  .attr("width", legendRectSize)
+  .attr("height", legendRectSize)
+  .attr("rx", 20)
+  .attr("ry", 20)
+  .style("fill",color)
+  .style("stroke", color);
+ 
+legend.append('text')
+  .attr("x",30)
+  .attr("y",15)
+  .text(function(d){return d;})
+  .style("fill", "#000000")
+  .style("font-size","12px");
+
+
+</script>
+</div>
+</div>
+</div>
+
+<div id="subDiv3">
+<div class="widget">
+    <div class="header">2 BP, 1st Serve</div>
+    <div id="chart21" class="chart-container">
+<script type="text/javascript">
+
+var dataset = [
+        { "name": 'Wide', "percent": {{m1w}} },
+	{ "name": 'Body', "percent": {{m1b}} },        
+	{ "name": 'Down T', "percent": {{m1t}} },
+    ];
+
+    var pie=d3.pie()
+            .value(function(d){return d.percent})
+            .sort(null)
+            .padAngle(.03);
+
+    var w=200,h=200;
+
+    var outerRadius=w/2;
+    var innerRadius=w/3.5;
+
+    var color = d3.scaleOrdinal()
+    .range(["#35c943", "#354ac9", "#e82424", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc=d3.arc()
+            .outerRadius(outerRadius)
+            .innerRadius(innerRadius);
+
+    var svg=d3.select("#chart21")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h)
+            .attr("class","shadow")
+	    .append("g")
+            .attr("transform", "translate("+ w/2 +","+ h/2 +")");
+
+    var path=svg.selectAll('path')
+            .data(pie(dataset))
+            .enter()
+            .append('path')
+            .attr("d", arc)
+            .style("fill", function(d,i){return color(d.data.name);});
+
+
+path.transition()
+    .duration(1000)
+    .attrTween('d', function(d) {
+        var interpolate = d3.interpolate({startAngle: 0, endAngle: 0}, d);
+        return function(t) {
+            return arc(interpolate(t));
+        };
+    });
+
+
+
+var text=svg.selectAll('text')
+  .data(pie(dataset))
+  .enter()
+  .append("text")
+  .transition()
+  .duration(200)
+  .attr("transform", function (d) {
+      return "translate(" + arc.centroid(d) + ")";
+  })
+  .attr("dy", ".4em")
+  .attr("text-anchor", "middle")
+  .text(function(d){
+      return d.data.percent+"%";
+  })
+  .style("fill", '#000000')
+  .style("font-size", '10px');
+
+var legendRectSize=16;
+var legendSpacing=7;
+var legendHeight=legendRectSize+legendSpacing;
+ 
+var legend=svg.selectAll('.legend')
+  .data(color.domain())
+  .enter()
+  .append('g')
+  .attr("class", 'legend')
+  .attr("transform", function(d,i){
+          //Just a calculation for x and y position
+          return 'translate(-35,' + ((i*legendHeight)-35) + ')';});
+
+legend.append('rect')
+  .attr("width", legendRectSize)
+  .attr("height", legendRectSize)
+  .attr("rx", 20)
+  .attr("ry", 20)
+  .style("fill",color)
+  .style("stroke", color);
+ 
+legend.append('text')
+  .attr("x",30)
+  .attr("y",15)
+  .text(function(d){return d;})
+  .style("fill", "#000000")
+  .style("font-size","12px");
+
+
+</script>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="secondDiv">
+
+<div id="subDiv4">
+<div class="widget">
+    <div class="header">No BP, 2nd Serve</div>
+    <div id="chart02" class="chart-container">
+<script type="text/javascript">
+var dataset = [
+        { "name": 'Wide', "percent": {{a2w}} },
+	{ "name": 'Body', "percent": {{a2b}} },        
+	{ "name": 'Down T', "percent": {{a2t}} },
+    ];
+
+    var pie=d3.pie()
+            .value(function(d){return d.percent})
+            .sort(null)
+            .padAngle(.03);
+
+    var w=200,h=200;
+
+    var outerRadius=w/2;
+    var innerRadius=w/3.5;
+
+    var color = d3.scaleOrdinal()
+    .range(["#35c943", "#354ac9", "#e82424", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc=d3.arc()
+            .outerRadius(outerRadius)
+            .innerRadius(innerRadius);
+
+    var svg=d3.select("#chart02")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h)
+            .attr("class","shadow")
+	    .append("g")
+            .attr("transform", "translate("+ w/2 +","+ h/2 +")");
+
+    var path=svg.selectAll('path')
+            .data(pie(dataset))
+            .enter()
+            .append('path')
+            .attr("d", arc)
+            .style("fill", function(d,i){return color(d.data.name);});
+
+
+path.transition()
+    .duration(1000)
+    .attrTween('d', function(d) {
+        var interpolate = d3.interpolate({startAngle: 0, endAngle: 0}, d);
+        return function(t) {
+            return arc(interpolate(t));
+        };
+    });
+
+
+
+var text=svg.selectAll('text')
+  .data(pie(dataset))
+  .enter()
+  .append("text")
+  .transition()
+  .duration(200)
+  .attr("transform", function (d) {
+      return "translate(" + arc.centroid(d) + ")";
+  })
+  .attr("dy", ".4em")
+  .attr("text-anchor", "middle")
+  .text(function(d){
+      return d.data.percent+"%";
+  })
+  .style("fill", '#000000')
+  .style("font-size", '10px');
+
+var legendRectSize=16;
+var legendSpacing=7;
+var legendHeight=legendRectSize+legendSpacing;
+ 
+var legend=svg.selectAll('.legend')
+  .data(color.domain())
+  .enter()
+  .append('g')
+  .attr("class", 'legend')
+  .attr("transform", function(d,i){
+          //Just a calculation for x and y position
+          return 'translate(-35,' + ((i*legendHeight)-35) + ')';});
+
+legend.append('rect')
+  .attr("width", legendRectSize)
+  .attr("height", legendRectSize)
+  .attr("rx", 20)
+  .attr("ry", 20)
+  .style("fill",color)
+  .style("stroke", color);
+ 
+legend.append('text')
+  .attr("x",30)
+  .attr("y",15)
+  .text(function(d){return d;})
+  .style("fill", "#000000")
+  .style("font-size","12px");
+
+
+</script>
+
+</div>
+</div>
+</div>
+
+<div id="subDiv5">
+<div class="widget">
+    <div class="header">1 BP, 2nd Serve</div>
+    <div id="chart12" class="chart-container">
+<script type="text/javascript">
+
+var dataset = [
+        { "name": 'Wide', "percent": {{s2w}} },
+	{ "name": 'Body', "percent": {{s2b}} },        
+	{ "name": 'Down T', "percent": {{s2t}} },
+    ];
+
+    var pie=d3.pie()
+            .value(function(d){return d.percent})
+            .sort(null)
+            .padAngle(.03);
+
+    var w=200,h=200;
+
+    var outerRadius=w/2;
+    var innerRadius=w/3.5;
+
+    var color = d3.scaleOrdinal()
+    .range(["#35c943", "#354ac9", "#e82424", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc=d3.arc()
+            .outerRadius(outerRadius)
+            .innerRadius(innerRadius);
+
+    var svg=d3.select("#chart12")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h)
+            .attr("class","shadow")
+	    .append("g")
+            .attr("transform", "translate("+ w/2 +","+ h/2 +")");
+
+    var path=svg.selectAll('path')
+            .data(pie(dataset))
+            .enter()
+            .append('path')
+            .attr("d", arc)
+            .style("fill", function(d,i){return color(d.data.name);});
+
+
+path.transition()
+    .duration(1000)
+    .attrTween('d', function(d) {
+        var interpolate = d3.interpolate({startAngle: 0, endAngle: 0}, d);
+        return function(t) {
+            return arc(interpolate(t));
+        };
+    });
+
+
+
+var text=svg.selectAll('text')
+  .data(pie(dataset))
+  .enter()
+  .append("text")
+  .transition()
+  .duration(200)
+  .attr("transform", function (d) {
+      return "translate(" + arc.centroid(d) + ")";
+  })
+  .attr("dy", ".4em")
+  .attr("text-anchor", "middle")
+  .text(function(d){
+      return d.data.percent+"%";
+  })
+  .style("fill", '#000000')
+  .style("font-size", '10px');
+
+var legendRectSize=16;
+var legendSpacing=7;
+var legendHeight=legendRectSize+legendSpacing;
+ 
+var legend=svg.selectAll('.legend')
+  .data(color.domain())
+  .enter()
+  .append('g')
+  .attr("class", 'legend')
+  .attr("transform", function(d,i){
+          //Just a calculation for x and y position
+          return 'translate(-35,' + ((i*legendHeight)-35) + ')';});
+
+legend.append('rect')
+  .attr("width", legendRectSize)
+  .attr("height", legendRectSize)
+  .attr("rx", 20)
+  .attr("ry", 20)
+  .style("fill",color)
+  .style("stroke", color);
+ 
+legend.append('text')
+  .attr("x",30)
+  .attr("y",15)
+  .text(function(d){return d;})
+  .style("fill", "#000000")
+  .style("font-size","12px");
+
+
+</script>
+
+</div>
+</div>
+</div>
+
+<div id="subDiv6">
+<div class="widget">
+    <div class="header">2 BP, 2nd Serve</div>
+    <div id="chart22" class="chart-container">
+<script type="text/javascript">
+
+var dataset = [
+        { "name": 'Wide', "percent": {{m2w}} },
+	{ "name": 'Body', "percent": {{m2b}} },        
+	{ "name": 'Down T', "percent": {{m2t}} },
+    ];
+
+    var pie=d3.pie()
+            .value(function(d){return d.percent})
+            .sort(null)
+            .padAngle(.03);
+
+    var w=200,h=200;
+
+    var outerRadius=w/2;
+    var innerRadius=w/3.5;
+
+    var color = d3.scaleOrdinal()
+    .range(["#35c943", "#354ac9", "#e82424", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc=d3.arc()
+            .outerRadius(outerRadius)
+            .innerRadius(innerRadius);
+
+    var svg=d3.select("#chart22")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h)
+            .attr("class","shadow")
+	    .append("g")
+            .attr("transform", "translate("+ w/2 +","+ h/2 +")");
+
+    var path=svg.selectAll('path')
+            .data(pie(dataset))
+            .enter()
+            .append('path')
+            .attr("d", arc)
+            .style("fill", function(d,i){return color(d.data.name);});
+
+
+path.transition()
+    .duration(1000)
+    .attrTween('d', function(d) {
+        var interpolate = d3.interpolate({startAngle: 0, endAngle: 0}, d);
+        return function(t) {
+            return arc(interpolate(t));
+        };
+    });
+
+
+
+var text=svg.selectAll('text')
+  .data(pie(dataset))
+  .enter()
+  .append("text")
+  .transition()
+  .duration(200)
+  .attr("transform", function (d) {
+      return "translate(" + arc.centroid(d) + ")";
+  })
+  .attr("dy", ".4em")
+  .attr("text-anchor", "middle")
+  .text(function(d){
+      return d.data.percent+"%";
+  })
+  .style("fill", '#000000')
+  .style("font-size", '10px');
+
+var legendRectSize=16;
+var legendSpacing=7;
+var legendHeight=legendRectSize+legendSpacing;
+ 
+var legend=svg.selectAll('.legend')
+  .data(color.domain())
+  .enter()
+  .append('g')
+  .attr("class", 'legend')
+  .attr("transform", function(d,i){
+          //Just a calculation for x and y position
+          return 'translate(-35,' + ((i*legendHeight)-35) + ')';});
+
+legend.append('rect')
+  .attr("width", legendRectSize)
+  .attr("height", legendRectSize)
+  .attr("rx", 20)
+  .attr("ry", 20)
+  .style("fill",color)
+  .style("stroke", color);
+ 
+legend.append('text')
+  .attr("x",30)
+  .attr("y",15)
+  .text(function(d){return d;})
+  .style("fill", "#000000")
+  .style("font-size","12px");
+
+
+</script>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<div id="thirdDiv">
+
+<div id="subDiv7">
+<div class="widget">
+    <div class="header">All Serves</div>
+    <div id="chart03" class="chart-container">
+<script type="text/javascript">
+
+var dataset = [
+        { "name": 'Wide', "percent": {{aaw}} },
+	{ "name": 'Body', "percent": {{aab}} },        
+	{ "name": 'Down T', "percent": {{aat}} },
+    ];
+
+    var pie=d3.pie()
+            .value(function(d){return d.percent})
+            .sort(null)
+            .padAngle(.03);
+
+    var w=200,h=200;
+
+    var outerRadius=w/2;
+    var innerRadius=w/3.5;
+
+    var color = d3.scaleOrdinal()
+    .range(["#35c943", "#354ac9", "#e82424", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc=d3.arc()
+            .outerRadius(outerRadius)
+            .innerRadius(innerRadius);
+
+    var svg=d3.select("#chart03")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h)
+            .attr("class","shadow")
+	    .append("g")
+            .attr("transform", "translate("+ w/2 +","+ h/2 +")");
+
+    var path=svg.selectAll('path')
+            .data(pie(dataset))
+            .enter()
+            .append('path')
+            .attr("d", arc)
+            .style("fill", function(d,i){return color(d.data.name);});
+
+
+path.transition()
+    .duration(1000)
+    .attrTween('d', function(d) {
+        var interpolate = d3.interpolate({startAngle: 0, endAngle: 0}, d);
+        return function(t) {
+            return arc(interpolate(t));
+        };
+    });
+
+
+
+var text=svg.selectAll('text')
+  .data(pie(dataset))
+  .enter()
+  .append("text")
+  .transition()
+  .duration(200)
+  .attr("transform", function (d) {
+      return "translate(" + arc.centroid(d) + ")";
+  })
+  .attr("dy", ".4em")
+  .attr("text-anchor", "middle")
+  .text(function(d){
+      return d.data.percent+"%";
+  })
+  .style("fill", '#000000')
+  .style("font-size", '10px');
+
+var legendRectSize=16;
+var legendSpacing=7;
+var legendHeight=legendRectSize+legendSpacing;
+ 
+var legend=svg.selectAll('.legend')
+  .data(color.domain())
+  .enter()
+  .append('g')
+  .attr("class", 'legend')
+  .attr("transform", function(d,i){
+          //Just a calculation for x and y position
+          return 'translate(-35,' + ((i*legendHeight)-35) + ')';});
+
+legend.append('rect')
+  .attr("width", legendRectSize)
+  .attr("height", legendRectSize)
+  .attr("rx", 20)
+  .attr("ry", 20)
+  .style("fill",color)
+  .style("stroke", color);
+ 
+legend.append('text')
+  .attr("x",30)
+  .attr("y",15)
+  .text(function(d){return d;})
+  .style("fill", "#000000")
+  .style("font-size","12px");
+
+
+</script>
+</div>
+</div>
+</div>
+
+<div id="subDiv8">
+<img class="court" src='../static/tennis_court-horizontal.png' width="400">
+</div>
+
+</div>
+
+
+<div class="pub">
+
+
+<h2>{{pname}}'s serve directions during different stages of his games.
+</h2>
+
+
+<p><button id="t2018">What's a Break Point? &darr;</button></p>
+
+<script>
+$("#t2018").click(function(){
+$(".y2018").toggle();
+});
+</script>
+
+<div class="y2018 hide">
+
+<p>
+Tennis, famously, has a very stupid scoring convention. Points are tallied as 0-0, 15-15, 30-30, 40-40 (deuce), AD-40, game. A game is won when a player wins at least 4 points by a margin of 2 points.  Each player alternates serving every game, i.e. starting each point in a game. In the men's game, the player who is serving is expected to win the game ("hold serve"). An opponent ("returner") has a chance to win a server's game by getting to "40" points before the server does, i.e. the score is any of the following: 0-40, 15-40, 30-40. <span class="atitle">These chances are called "break points" as getting this point would break the server's hold (tennis is a very poetic game).</span>
+</p>
+<p>
+A player typically has three options while serving (black racquet in the plot). They can serve either towards the middle of the court ("Down the T"), away from the court ("Out Wide"), or try to hit the middle of the serving box, typically right in front of the player's body ("Body serve").
+
+</p>
+</div>
+
+
+<br/>
+<br/> <a href="../">Back </a>
+
+<div id="footer">
+<p> Updated August 13th, 2019</p>
+</div>
+
+</div>
+
+
+</body>
+
+
+<!--
+    <div id="subDiv1">1</div>
+    <div id="subDiv2">2</div>
+    <div id="subDiv3">3</div>
+    <div id="subDiv4">4</div>
+-->
+ 
